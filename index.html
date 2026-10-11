@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Map of Indian Music</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="map.css">
+</head>
+<body>
+  <header>
+    <h1 id="title"></h1>
+    <p id="intro"></p>
+    <div id="progress">
+      <span class="count"></span>
+      <span class="bar"><span></span></span>
+      <button type="button" class="next">Next unheard →</button>
+      <button type="button" class="share">Copy progress link</button>
+      <span class="flash" role="status"></span>
+    </div>
+  </header>
+  <main>
+    <div class="paper"><div id="canvas"></div></div>
+    <aside id="panel" aria-live="polite">
+      <p class="kind">How to read this</p>
+      <h2>Poles and the field</h2>
+      <p class="desc">The <b>dark red tiles</b> are the source traditions, and the red arc is folk. The coloured shapes are genres, placed according to how strongly each source pulls on them. The large shape in the middle is <b>film music</b>, which draws on everything it touches.</p>
+      <p class="desc">Each <b>★</b> is a song. Click one to hear it. Once you've listened for a minute, its star turns <b class="gold">gold</b>.</p>
+      <p class="desc small">Your progress is saved in this browser only. To continue on another device, use <i>Copy progress link</i> and open the link there.</p>
+    </aside>
+  </main>
+  <script src="map-data.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>
