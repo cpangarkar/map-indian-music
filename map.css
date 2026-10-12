@@ -58,6 +58,8 @@ main {
 .hit.song.heard .halo { fill: rgba(224, 161, 0, 0.14); }
 .hit:not(.song):hover, .hit:not(.song):focus-visible { filter: brightness(0.94); }
 .hit:not(.song).selected { filter: drop-shadow(0 0 14px rgba(107, 31, 255, 0.6)); }
+.hit.backdrop { cursor: default; }
+.hit.backdrop:hover, .hit.backdrop:focus-visible, .hit.backdrop.selected { filter: none; }
 
 /* ---- progress ---- */
 #progress {

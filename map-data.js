@@ -14,6 +14,11 @@ window.MAP_DATA = {
   intro:
     "Indian music isn't a list of boxes. It's a field pulled between a few great source traditions: Hindustani, Carnatic, Folk, Persian and Western. Every genre sits where those pulls place it. Each star is a song I've chosen. Click one to hear it.",
 
+  // Text labels on the map with these names are clickable even when their layer isn't named.
+  poles: ["hindustani", "carnatic", "persian", "western", "folk"],
+  folk: ["Lavani", "Gondhal", "Koli", "Garba", "Dandiya", "Manganiyar", "Langa", "Kajri", "Chaiti",
+    "Dadra", "Bhatiyali", "Baul", "Bhangra", "Boliyan", "Lori"],
+
   // Descriptions for named shapes (DRAFTS – rewrite in your own voice).
   notes: {
     hindustani: {
@@ -44,7 +49,7 @@ window.MAP_DATA = {
       name: "Bhajan",
       desc: "Hindu devotional songs, from the medieval Bhakti poets (Mirabai, Kabir, Surdas, Tulsidas) to simple songs sung together in temples and homes.",
     },
-    bhavageet: {
+    bhavgeet: {
       name: "Bhavageet",
       desc: "Marathi 'songs of feeling': lyric poetry set to light, melodic music, made popular through radio and records in the 20th century.",
     },

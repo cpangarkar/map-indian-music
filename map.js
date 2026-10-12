@@ -19,6 +19,9 @@
 
   const norm = (s) => s.toLowerCase().replace(/\s+/g, " ").trim();
   const slug = (s) => norm(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  // Ignores case, spaces, punctuation and ligatures: "Natya Sangeet" = "natyasangeet", "Suﬁ" = "sufi".
+  const squash = (s) => s.normalize("NFKC").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const note = (key) => D.notes[key] || D.notes[Object.keys(D.notes).find((k) => squash(k) === squash(key))] || {};
   const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 
   // ---------- heard-songs storage (per browser) ----------
@@ -212,11 +215,11 @@
       panel.append(actions);
       renderHeardToggle();
     } else {
-      const n = D.notes[entry.key] || {};
+      const n = note(entry.key);
       panel.append(el("h2", "", n.name || titleCase(entry.key)));
       if (n.desc) panel.append(el("p", "desc", n.desc));
       const key = entry.key === "film music" ? "film" : entry.key;
-      const related = songs.filter((s) => genreTags(s.genre).includes(key));
+      const related = songs.filter((s) => genreTags(s.genre).some((t) => squash(t) === squash(key)));
       if (related.length) {
         panel.append(el("p", "kind", "Songs on the map"));
         panel.append(songList(related));
@@ -279,10 +282,20 @@
       c.setAttribute("class", "halo");
       g.prepend(c);
     }
+    if (kind !== "song" && !node.querySelector("path, circle, ellipse, rect, polygon, use") &&
+        !/^(path|circle|ellipse|rect|polygon|use)$/.test(node.localName)) {
+      // Text-only label: add an invisible padded box so it's easy to click.
+      const b = node.getBBox(), pad = b.height * 0.3;
+      const r = document.createElementNS(NS, "rect");
+      ["x", "y", "width", "height"].forEach((a, i) => r.setAttribute(a, [b.x - pad, b.y - pad, b.width + 2 * pad, b.height + 2 * pad][i]));
+      r.setAttribute("fill", "transparent");
+      g.prepend(r);
+    }
     const t = document.createElementNS(NS, "title");
     t.textContent = label;
     g.prepend(t);
-    g.setAttribute("class", "hit " + kind);
+    // "genre - film music" is the paper behind everything: clickable, but no hover effect.
+    g.setAttribute("class", "hit " + kind + (key === "film music" ? " backdrop" : ""));
     g.setAttribute("tabindex", "0");
     g.setAttribute("role", "button");
     g.setAttribute("aria-label", label);
@@ -318,14 +331,27 @@
 
       const stars = [];
       [...svg.querySelectorAll("*")].filter((n) => n.hasAttribute("affinity:id")).forEach((n) => {
-        const m = n.getAttribute("affinity:id").match(/^\s*(song|genre|pole|folk)\s*-\s*(.+)$/i);
+        const m = n.getAttribute("affinity:id").match(/^\s*(song|genre|guide|pole|folk)\s*-\s*(.+)$/i);
         if (!m) return;
-        const kind = m[1].toLowerCase();
+        const kind = m[1].toLowerCase() === "guide" ? "genre" : m[1].toLowerCase();
         const key = norm(m[2]);
         if (kind === "song") return stars.push({ n, key });
-        const label = (D.notes[key] && D.notes[key].name) || titleCase(key);
+        const label = note(key).name || titleCase(key);
         const id = kind + "-" + slug(key);
         byId[id] = { kind, key, g: makeHit(n, kind, key, label) };
+        bind(byId[id].g, id);
+      });
+
+      // Plain text labels (not in a named layer) that spell a pole or folk tradition become clickable too.
+      const known = {};
+      (D.poles || []).forEach((k) => (known[squash(k)] = { kind: "pole", key: k }));
+      (D.folk || []).forEach((k) => (known[squash(k)] = { kind: "folk", key: norm(k) }));
+      [...svg.querySelectorAll("text")].forEach((t) => {
+        const k = known[squash(t.textContent)];
+        if (!k || t.closest(".hit")) return;
+        const id = k.kind + "-" + slug(k.key);
+        if (byId[id]) return;
+        byId[id] = { kind: k.kind, key: k.key, g: makeHit(t, k.kind, k.key, note(k.key).name || titleCase(k.key)) };
         bind(byId[id].g, id);
       });
 
@@ -333,7 +359,7 @@
       const unmatched = new Set(songs);
       const pending = [];
       stars.forEach((st) => {
-        const s = songs.find((x) => x.key === st.key && unmatched.has(x));
+        const s = songs.find((x) => squash(x.key) === squash(st.key) && unmatched.has(x));
         if (s) { unmatched.delete(s); st.song = s; } else pending.push(st);
       });
       pending.forEach((st) => {

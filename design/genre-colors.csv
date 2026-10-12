@@ -1,0 +1,33 @@
+name,kind,x,y,hex,pigment / mix
+Hindustani,pole,2550,1400,#E2571E,pyrrole orange
+Folk,pole,2098,2779,#F2A900,Indian yellow
+Carnatic,pole,4325,1960,#C79A2E,yellow ochre / quinacridone gold
+Persian,pole,980,680,#1E5B45,hooker's green deep
+Western,pole,4476,1017,#5B2D84,dioxazine violet
+Dhrupad,genre,2550,1400,#E2571E,100% Hindustani
+Khayal,genre,2247,1261,#9D5824,80% Hindustani + 20% Persian
+Thumri,genre,2132,1476,#9F6513,60% Hindustani + 20% Folk + 20% Persian
+Mujra,genre,1852,1256,#835E1D,60% Hindustani + 10% Folk + 30% Persian
+Ghazal,genre,1477,908,#6C592B,60% Hindustani + 40% Persian
+Sufi,genre,1384,1287,#6D6618,40% Hindustani + 20% Folk + 40% Persian
+Qawwali,genre,1294,824,#495932,40% Hindustani + 60% Persian
+Natya Sangeet,genre,2490,1569,#BD6A12,60% Hindustani + 20% Folk + 10% Carnatic + 10% Persian
+Abhang,genre,2612,2007,#E4710B,60% Hindustani + 30% Folk + 10% Carnatic
+Bhajan,genre,2643,1740,#AE6B10,40% Hindustani + 30% Folk + 10% Carnatic + 10% Persian + 10% Western
+Bhavgeet,genre,2385,1837,#BE720C,50% Hindustani + 30% Folk + 10% Carnatic + 10% Persian
+Indian Rock,genre,3658,1478,#845326,20% Hindustani + 20% Folk + 10% Carnatic + 10% Persian + 40% Western
+Lavani,folk (Maharashtra),3532,2634,#E4A401,75% Folk + 24% Carnatic + 1% Persian
+Gondhal,folk (Maharashtra),3361,2695,#DEA301,75% Folk + 23% Carnatic + 2% Persian
+Koli,folk (Maharashtra),3182,2743,#D8A201,75% Folk + 21% Carnatic + 4% Persian
+Garba,folk (Gujarat),2943,2788,#D1A001,75% Folk + 19% Carnatic + 6% Persian
+Dandiya,folk (Gujarat),2753,2808,#CC9F01,75% Folk + 18% Carnatic + 7% Persian
+Manganiyar,folk (Rajasthan),2506,2815,#C59E01,75% Folk + 16% Carnatic + 9% Persian
+Langa,folk (Rajasthan),2314,2805,#C09C01,75% Folk + 14% Carnatic + 11% Persian
+Kajri,folk (Uttar Pradesh & Bihar),2071,2774,#BA9B01,75% Folk + 12% Carnatic + 13% Persian
+Chaiti,folk (Uttar Pradesh & Bihar),1887,2736,#B59A01,75% Folk + 11% Carnatic + 14% Persian
+Dadra,folk (Uttar Pradesh & Bihar),1709,2685,#B19802,75% Folk + 9% Carnatic + 16% Persian
+Bhatiyali,folk (Bengal),1491,2603,#AB9702,75% Folk + 7% Carnatic + 18% Persian
+Baul,folk (Bengal),1333,2526,#A79602,75% Folk + 6% Carnatic + 19% Persian
+Bhangra,folk (Punjab),1146,2412,#A19402,75% Folk + 4% Carnatic + 21% Persian
+Boliyan,folk (Punjab),1015,2313,#9D9302,75% Folk + 2% Carnatic + 23% Persian
+Lori,folk (Punjab),899,2206,#999202,75% Folk + 1% Carnatic + 24% Persian
